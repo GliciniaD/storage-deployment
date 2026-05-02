@@ -15,7 +15,12 @@ pool:
 
 jobs:
   - job: TerraformDeploy
+    variables:
+      ARM_USE_OIDC: 'true'
+      ARM_USE_MSI: 'false'
+      ARM_CLIENT_ID: '$(servicePrincipalId)'
+      ARM_TENANT_ID: '$(tenantId)'
+      ARM_SUBSCRIPTION_ID: '$(subscriptionId)'
     steps:
-      - checkout: self
-      - template: terraform-tasks.yaml@Azure-devops-tasks      
-
+    - checkout: self
+    - template: terraform-tasks.yaml@Azure-devops-tasks
