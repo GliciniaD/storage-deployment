@@ -16,5 +16,6 @@ pool:
 jobs:
   - job: TerraformDeploy
     steps:
+      - checkout: self
       - template: terraform-tasks.yaml@Azure-devops-tasks      
 
