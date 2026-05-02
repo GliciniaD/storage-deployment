@@ -1,0 +1,20 @@
+
+resources:
+  repositories:
+    - repository: Azure-devops-tasks
+      type: github
+      name: GliciniaD/Azure-devops-tasks
+      endpoint: 'github.com_GliciniaD'
+
+
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+  - job: TerraformDeploy
+    steps:
+      - template: terraform-tasks.yaml@Azure-devops-tasks      
+
