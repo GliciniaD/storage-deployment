@@ -37,9 +37,9 @@ jobs:
 
     - script: |
         cp $(System.DefaultWorkingDirectory)/central-variables/Landing-Zone-Files/sub-lzlab-dev-uks-01.tfvars \
-           $(System.DefaultWorkingDirectory)/storage-module/
+           $(System.DefaultWorkingDirectory)/storage-deployment/
       displayName: Copy tfvars to storage module
 
     - template: terraform-tasks.yaml@Azure-devops-tasks
       parameters:
-        workingDirectory: '$(System.DefaultWorkingDirectory)/storage-module'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/storage-deployment'
