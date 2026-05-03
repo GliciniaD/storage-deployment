@@ -22,8 +22,6 @@ steps:
        $(System.DefaultWorkingDirectory)/storage-module/
   displayName: Copy tfvars to storage module 
 
-stages:
-- stage: Dev
   pool:
     vmImage: 'ubuntu-latest'
   jobs:
