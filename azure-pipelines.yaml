@@ -1,5 +1,3 @@
-
-#Below I'll checkout centralvariables to fetch the variables and ADO repo for ADO to run terraform tasks
 resources:
   repositories:
     - repository: Azure-devops-tasks
@@ -9,22 +7,15 @@ resources:
     - repository: central-variables
       type: github
       name: GliciniaD/central-variables
-      endpoint: 'github.com_GliciniaD'  
+      endpoint: 'github.com_GliciniaD'
 
+trigger:
+  - main
 
-#Step below will copy central variable file into the same location of where the storage module is
-steps:
-- checkout: self
-- checkout: central-variables
+pool:
+  vmImage: 'ubuntu-latest'
 
-- script: |
-    cp $(System.DefaultWorkingDirectory)/central-variables/dev/dev.tfvars \
-       $(System.DefaultWorkingDirectory)/storage-module/
-  displayName: Copy tfvars to storage module 
-
-  pool:
-    vmImage: 'ubuntu-latest'
-  jobs:
+jobs:
   - job: TerraformDeploy
     variables:
       ARM_USE_OIDC: 'true'
@@ -32,6 +23,13 @@ steps:
       ARM_SUBSCRIPTION_ID: '899effae-fb98-4b70-a9b9-94321a00bcdf'
     steps:
     - checkout: self
+    - checkout: central-variables
+
+    - script: |
+        cp $(System.DefaultWorkingDirectory)/central-variables/dev/dev.tfvars \
+           $(System.DefaultWorkingDirectory)/storage-module/
+      displayName: Copy tfvars to storage module
+
     - template: terraform-tasks.yaml@Azure-devops-tasks
       parameters:
-      workingDirectory: '$(System.DefaultWorkingDirectory)/storage-module'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/storage-module'
