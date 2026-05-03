@@ -6,6 +6,8 @@ resources:
       name: GliciniaD/Azure-devops-tasks
       endpoint: 'github.com_GliciniaD'
 
+stages:
+- stage: Dev
 
 trigger:
   - main
