@@ -12,7 +12,7 @@ resources:
 trigger:
   - main
 
-  
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -25,6 +25,15 @@ jobs:
     steps:
     - checkout: self
     - checkout: central-variables
+
+    - script: |
+        echo "=== Root ==="
+        ls $(System.DefaultWorkingDirectory)
+        echo "=== central-variables ==="
+        ls $(System.DefaultWorkingDirectory)/central-variables
+        echo "=== Landing-Zone-Files ==="
+        ls $(System.DefaultWorkingDirectory)/central-variables/Landing-Zone-Files
+      displayName: Debug folder structure
 
     - script: |
         cp $(System.DefaultWorkingDirectory)/central-variables/Landing-Zone-Files/sub-lzlab-dev-uks-01.tfvars \
