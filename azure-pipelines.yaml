@@ -21,6 +21,10 @@ jobs:
       ARM_CLIENT_ID: '89527035-3d3e-4327-9b1f-9645e5f5dbfd'
       ARM_TENANT_ID: 'b73e98dc-6de1-4e38-a69d-b631d01ade9b'
       ARM_SUBSCRIPTION_ID: '899effae-fb98-4b70-a9b9-94321a00bcdf'
+      TF_VAR_client_id: '89527035-3d3e-4327-9b1f-9645e5f5dbfd'
+      TF_VAR_tenant_id: 'b73e98dc-6de1-4e38-a69d-b631d01ade9b'
+      TF_VAR_subscription_id: '899effae-fb98-4b70-a9b9-94321a00bcdf'     
+
     steps:
     - checkout: self
     - template: terraform-tasks.yaml@Azure-devops-tasks
