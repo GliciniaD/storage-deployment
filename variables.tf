@@ -1,9 +1,7 @@
-variable "rg_name" {
-  type        = string
-  description = "name of storage account"
-}
-
-variable "storage_name" {
-  type        = string
-  description = "name of storage account"
+variable "storage accounts" {
+  type        = map(object({
+    rg_name = string
+    storage_accounts = string
+    description = "name of storage account"
+}))
 }
