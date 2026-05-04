@@ -10,7 +10,7 @@ resources:
       endpoint: 'github.com_GliciniaD'
 
 trigger:
-  - main
+  - none
 
 
 pool:
